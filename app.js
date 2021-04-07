@@ -4,6 +4,10 @@ const logger=require('morgan');
 
 const app=express();
 const userRoute=require('./routes/user');
+
+//body parser
+
+const bodyParser=require('body-parser');
 //mongoose connect
 const mongoose=require('mongoose');
 
@@ -22,6 +26,7 @@ mongoose.connect('mongodb://localhost/nodejsapistarter',{
 
 //Middlewares(chay truoc khi ta xu ly)
 app.use(logger('dev'));
+app.use(bodyParser.json());
 
 //Routes
 app.use('/users',userRoute)
