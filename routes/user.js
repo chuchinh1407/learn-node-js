@@ -12,9 +12,13 @@ router.route('/')
 // .put()
 // .delete()
 router.route('/:userID')
-.get(UserController.getUser)
-.put(UserController.replaceUser)
-.patch(UserController.updateUser)
+    .get(UserController.getUser)
+    .put(UserController.replaceUser)
+    .patch(UserController.updateUser)
+
+router.route('/:userID/decks')
+    .get(UserController.getUserDecks)
+    .post(UserController.newUserDeck)
 
 
 
