@@ -1,3 +1,4 @@
+const { required } = require('@hapi/joi');
 const express = require('express');
 
 // const router=express.Router();
@@ -6,13 +7,15 @@ const router = require('express-promise-router')();//dung cai nay thi khong can 
 
 const UserController = require('../controllers/user');
 
+const {validateBody, validateParam,schemas}=require('../helpers/routerHelper');
+
 router.route('/')
     .get(UserController.index)
-    .post(UserController.newUser)
+    .post(validateBody(schemas.userSchema), UserController.newUser)
 // .put()
 // .delete()
 router.route('/:userID')
-    .get(UserController.getUser)
+    .get(validateParam(schemas.idSchema,'userID'), UserController.getUser)
     .put(UserController.replaceUser)
     .patch(UserController.updateUser)
 

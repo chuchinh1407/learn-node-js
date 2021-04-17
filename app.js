@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/nodejsapistarter',{
     useUnifiedTopology: true
 })
         .then(()=>{
-            console.log('connect suggsess!!');
+            console.log('connect mongo suggsess!!');
         })
         .catch(()=>{
                 console.log('connect fail!');

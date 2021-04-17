@@ -7,8 +7,12 @@
 
 const User = require('../modal/User');
 const Deck = require('../modal/Deck')
+const Joi=require('@hapi/joi');
+const idSchema=Joi.object().keys({
+    userID:Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+})
 const getUser = async (req, res, next) => {
-    const { userID } = req.params;
+    const { userID } = req.value.params;
     const user = await User.findById(userID);
     return res.status(200).json({
         user
@@ -94,7 +98,7 @@ const index = async (req, res, next) => {
 
 const newUser = async (req, res, next) => {
     try {
-        const newUser = new User(req.body)
+        const newUser = new User(req.value.body)
         await newUser.save();
         return res.status(201).json({
             user: newUser
